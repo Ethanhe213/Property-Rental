@@ -107,16 +107,22 @@
             <option value="WY">Wyoming</option>
         </select>
     </div>
-        <label for="Gas Price">Gas Price per Gallon:</label>
-        <input type="number" name="gasprice" step="0.01" min="0">
-        <label for="datetime">Time and Date:</label>
-        <input type="datetime-local" name="datetime_seen">
+     <div class="mb-3">
+        <label class='col-1' for="zip_code" >Zip Code:</label>
+        <input class='col-3' type="text" minlength="5" maxlength="5" name="zip_code" placeholder="five digits">
+    </div>
+    <div class="mb-3">
+        <label class='col-1'  for="Price">Price:</label>
+        <input class='col-3'  type="number" name="price" min="0"> per Month
+    </div>
+        <label for="rent_period" class='col-1'>Length:</label>
+        <input type="number" name="rent_period" maxlength="1" class='col-3'> Months
         <input type="hidden" name="user_id" value="{{session['user_id']}}">
-        <input type="submit" value="Report">
+       
     </div>
     <div class="right_form">
         
-        
+        <input type="submit" value="Report">
     </div>  
     </form>
   
