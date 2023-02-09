@@ -33,7 +33,7 @@
               </div>
             </div>
           </nav>
-    </div>
+    
     {% with messages= get_flashed_messages(category_filter=['gas']) %}
         {%if messages%}
             {% for message in messages %}
@@ -42,7 +42,7 @@
         {% endif %}
     {% endwith %}
    
-    <form class="form-control-lg" action="/create" method="post">
+    <form class="form-control-lg p-3 mb-2 bg-primary-subtle text-emphasis-primary " action="/create" method="post">
     <div class="mb-3">
         <label class='col-1'for="address">Address:</label>
         <input class='col-3' type="text" name="address">
@@ -115,16 +115,24 @@
         <label class='col-1'  for="Price">Price:</label>
         <input class='col-3'  type="number" name="price" min="0"> per Month
     </div>
+    <div class="mb-3">
         <label for="rent_period" class='col-1'>Length:</label>
         <input type="number" name="rent_period" maxlength="1" class='col-3'> Months
         <input type="hidden" name="user_id" value="{{session['user_id']}}">
-       
+    </div>
+    <div class="mb-3">
+        <label class='col-1'  for="Price">Pictures:</label>
+        <input type="file" id="myFile" name="images" multiple>
+    </div>
+    <div class="mb-3">
+        <label class='col-1'  for="Price">Price:</label>
+        <input class='col-3'  type="number" name="price" min="0"> per Month
     </div>
     <div class="right_form">
         
-        <input type="submit" value="Report">
+        <input class='btn btn-primary col-1' type="submit" value="Submit">
     </div>  
     </form>
-  
+</div>
 </body>
 </html>
