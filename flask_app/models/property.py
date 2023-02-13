@@ -15,6 +15,7 @@ class Property:
         self.rent_period=data['rent_period']
         self.updated_at=data['updated_at']
         self.created_at=data['created_at']
+        self.description=data['description']
         self. user=None
     @staticmethod
     def is_valid(data):
