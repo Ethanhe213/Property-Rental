@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash,session
-
-DB='PR'
+from flask_app.models import user
+DB='pr'
 
 class Property:
     def __init__(self, data):
@@ -46,3 +46,29 @@ class Property:
         VALUES(%(images)s,%(address)s,%(city)s,%(state)s,%(zip_code)s,%(price)s,
         %(rent_period)s,%(user_id)s,NOW(),NOW()
     )'''
+    @classmethod
+    def pr_city(cls,city,state):
+        data={
+            'city':city,
+            'state':state,
+        }
+        list=[]
+        query='''SELECT * FROM properties join users on users.id=properties.user_id
+        WHERE city=%(city)s and state=%(state)s '''
+        result=connectToMySQL(DB).query_db(query,data)
+        if len(result) < 1:
+            return False
+        for i in result:
+            a=cls(i)
+            a.user=user.User({
+                'id':i['user_id'],
+                'first_name':i['first_name'],
+                'last_name':i['last_name'],
+                'email':i['email'],
+                'password':i['password'],
+                'phone_number':i['phone_number'],
+                'created_at':i['users.created_at'],
+                'updated_at':i['users.updated_at']
+            })
+            list.append(a)
+        return list

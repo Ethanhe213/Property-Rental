@@ -17,6 +17,7 @@ def register():
         'first_name':request.form['first_name'],
         'last_name':request.form['last_name'],
         'email':request.form['email'],
+        'phone_number':request.form['phone_number'],
         'password':pw_pass,
         'phone_number':request.form['phone_number'],
 
@@ -34,4 +35,4 @@ def login():
     if not bcrypt.check_password_hash(user_in_db.password,request.form['password']):
         flash('Invalid Email/Password','login')
         return redirect('/')
-    return render_template('index.html')
+    return redirect('/home')
